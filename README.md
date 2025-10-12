@@ -2,6 +2,7 @@
   <img src="nvkitstart-logo.svg" alt="NvKitstart logo" width="200"/>
   <img src="Neovim-mark.svg" alt="Neovim logo" width="200"/>
 </p>
+
 # NvKitstart
 
 NvKitstart is a modern, object-oriented Neovim starter configuration written in Lua.  
