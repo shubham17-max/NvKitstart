@@ -1,3 +1,4 @@
+![Logo](logo.svg)
 # NvKitstart
 
 NvKitstart is a modern, object-oriented Neovim starter configuration written in Lua.  
