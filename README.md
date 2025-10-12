@@ -76,7 +76,8 @@ MIT License. See [LICENSE](./LICENSE).
 
 ## Screenshots
 
-_Coming soon!_
+![0](screenshots/0.png)
+![1](screenshots/1.png)
 
 ---
 
