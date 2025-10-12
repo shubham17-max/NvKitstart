@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="nvkitstart-logo.svg" alt="NvKitstart logo" width="200" style="margin-right: 100px;"/>
+  <img src="nvkitstart-logo.svg" alt="NvKitstart logo" width="200"/> &nbsp;&nbsp;&nbsp;
   <img src="Neovim-mark.svg" alt="Neovim logo" width="200"/>
 </p>
 
