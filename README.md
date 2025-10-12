@@ -1,7 +1,7 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <img src="nvkitstart-logo.svg" alt="NvKitstart logo" width="200"/>
+<p align="center">
+  <img src="nvkitstart-logo.svg" alt="NvKitstart logo" width="200" style="margin-right: 40px;"/>
   <img src="Neovim-mark.svg" alt="Neovim logo" width="200"/>
-</div>
+</p>
 
 # NvKitstart
 
