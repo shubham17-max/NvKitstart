@@ -170,6 +170,14 @@ function NvConfig:setup_plugins()
 				opts_extend = { "sources.default" },
 			},
 			{
+				"iamcco/markdown-preview.nvim",
+				cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+				ft = { "markdown" },
+				build = function()
+					vim.fn["mkdp#util#install"]()
+				end,
+			},
+			{
 				"stevearc/conform.nvim",
 				config = function()
 					require("conform").setup({ formatters_by_ft = { lua = { "stylua" } } })
