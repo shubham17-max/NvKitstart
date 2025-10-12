@@ -1,4 +1,4 @@
-![Logo](logo.svg)
+![Logo](nvkitstart-logo.svg)
 ![NeovimLogo](Neovim-mark.svg)
 # NvKitstart
 
