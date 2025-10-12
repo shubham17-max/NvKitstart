@@ -265,12 +265,6 @@ function NvConfig:setup_plugins()
 						end,
 						desc = "Buffer Local Keymaps (which-key)",
 					},
-					{ "<leader>f", group = "Local Keymaps" },
-					{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files", mode = "n" },
-					{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep", mode = "n" },
-					{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers", mode = "n" },
-					{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags", mode = "n" },
-					{ "<leader>fo", "<cmd>Oil<cr>", desc = "Opens a file explorer", mode = "n" },
 				},
 			},
 			{
@@ -350,6 +344,9 @@ function NvConfig:set_options()
 	vim.o.cursorline = true
 	vim.o.clipboard = "unnamedplus"
 	vim.o.showcmd = true
+	vim.o.tabstop = 4
+	vim.o.smartindent = true
+	vim.o.smarttab = true
 end
 
 -- Diagnostics configuration.
@@ -370,7 +367,63 @@ function NvConfig:setup()
 	self:setup_diagnostics()
 end
 
+function NvConfig:InitLocalWhichKeyMappings()
+	require("which-key").register({
+		f = {
+			name = "Local Keymaps",
+			f = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
+			g = { "<cmd>Telescope live_grep<cr>", "Telescope live grep" },
+			b = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
+			h = { "<cmd>Telescope help_tags<cr>", "Telescope help tags" },
+			o = { "<cmd>Oil<cr>", "Opens a file explorer" },
+		},
+	}, { prefix = "<leader>" })
+end
+
+function NvConfig:InitBufferKeymaps()
+	require("which-key").register({
+		b = {
+			name = "Buffer",
+			[","] = { "<Cmd>BufferPrevious<CR>", "Previous buffer" },
+			["."] = { "<Cmd>BufferNext<CR>", "Next buffer" },
+			["<"] = { "<Cmd>BufferMovePrevious<CR>", "Move buffer left" },
+			[">"] = { "<Cmd>BufferMoveNext<CR>", "Move buffer right" },
+			["1"] = { "<Cmd>BufferGoto 1<CR>", "Go to buffer 1" },
+			["2"] = { "<Cmd>BufferGoto 2<CR>", "Go to buffer 2" },
+			["3"] = { "<Cmd>BufferGoto 3<CR>", "Go to buffer 3" },
+			["4"] = { "<Cmd>BufferGoto 4<CR>", "Go to buffer 4" },
+			["5"] = { "<Cmd>BufferGoto 5<CR>", "Go to buffer 5" },
+			["6"] = { "<Cmd>BufferGoto 6<CR>", "Go to buffer 6" },
+			["7"] = { "<Cmd>BufferGoto 7<CR>", "Go to buffer 7" },
+			["8"] = { "<Cmd>BufferGoto 8<CR>", "Go to buffer 8" },
+			["9"] = { "<Cmd>BufferGoto 9<CR>", "Go to buffer 9" },
+			["0"] = { "<Cmd>BufferLast<CR>", "Go to last buffer" },
+			p = { "<Cmd>BufferPin<CR>", "Pin/unpin buffer" },
+			gp = { "<Cmd>BufferGotoPinned<CR>", "Go to pinned buffer" },
+			gu = { "<Cmd>BufferGotoUnpinned<CR>", "Go to unpinned buffer" },
+			c = { "<Cmd>BufferClose<CR>", "Close buffer" },
+			w = { "<Cmd>BufferWipeout<CR>", "Wipeout buffer" },
+			aa = { "<Cmd>BufferCloseAllButCurrent<CR>", "Close all but current" },
+			ap = { "<Cmd>BufferCloseAllButPinned<CR>", "Close all but pinned" },
+			ao = { "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", "Close all but current/pinned" },
+			al = { "<Cmd>BufferCloseBuffersLeft<CR>", "Close buffers left" },
+			ar = { "<Cmd>BufferCloseBuffersRight<CR>", "Close buffers right" },
+			P = { "<Cmd>BufferPick<CR>", "Magic buffer pick mode" },
+			PD = { "<Cmd>BufferPickDelete<CR>", "Magic buffer pick delete" },
+			ob = { "<Cmd>BufferOrderByBufferNumber<CR>", "Order by buffer number" },
+			on = { "<Cmd>BufferOrderByName<CR>", "Order by name" },
+			od = { "<Cmd>BufferOrderByDirectory<CR>", "Order by directory" },
+			ol = { "<Cmd>BufferOrderByLanguage<CR>", "Order by language" },
+			ow = { "<Cmd>BufferOrderByWindowNumber<CR>", "Order by window number" },
+			e = { "<Cmd>BarbarEnable<CR>", "Enable Barbar" },
+			d = { "<Cmd>BarbarDisable<CR>", "Disable Barbar" },
+		},
+	}, { prefix = "<leader>" })
+end
+
 -- Initialize and run the config.
 -- CONTRIBUTION: Prefer to add new features via methods or plugin specs above.
 local config = NvConfig:new()
 config:setup()
+config:InitLocalWhichKeyMappings()
+config:InitBufferKeymaps()
