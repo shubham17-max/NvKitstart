@@ -373,65 +373,70 @@ function NvConfig:setup()
 	self:setup_plugins()
 	self:set_options()
 	self:setup_diagnostics()
+	self:InitWhichKeyMappings()
 end
 
-function NvConfig:InitLocalWhichKeyMappings()
-	require("which-key").register({
-		f = {
-			name = "Local Keymaps",
-			f = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
-			g = { "<cmd>Telescope live_grep<cr>", "Telescope live grep" },
-			b = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
-			h = { "<cmd>Telescope help_tags<cr>", "Telescope help tags" },
-			o = { "<cmd>Oil<cr>", "Opens a file explorer" },
-		},
-	}, { prefix = "<leader>" })
+-- Initializes Telescope plugin's mappings
+function NvConfig:InitWhichKeyTelescopeMappings()
+	require("which-key").add({
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files", mode = "ni" },
+		{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep", mode = "ni" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers", mode = "ni" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags", mode = "ni" },
+		{ "<leader>fo", "<cmd>Oil<cr>", desc = "Opens a file explorer", mode = "ni" },
+	})
 end
 
-function NvConfig:InitBufferKeymaps()
-	require("which-key").register({
-		b = {
-			name = "Buffer",
-			[","] = { "<Cmd>BufferPrevious<CR>", "Previous buffer" },
-			["."] = { "<Cmd>BufferNext<CR>", "Next buffer" },
-			["<"] = { "<Cmd>BufferMovePrevious<CR>", "Move buffer left" },
-			[">"] = { "<Cmd>BufferMoveNext<CR>", "Move buffer right" },
-			["1"] = { "<Cmd>BufferGoto 1<CR>", "Go to buffer 1" },
-			["2"] = { "<Cmd>BufferGoto 2<CR>", "Go to buffer 2" },
-			["3"] = { "<Cmd>BufferGoto 3<CR>", "Go to buffer 3" },
-			["4"] = { "<Cmd>BufferGoto 4<CR>", "Go to buffer 4" },
-			["5"] = { "<Cmd>BufferGoto 5<CR>", "Go to buffer 5" },
-			["6"] = { "<Cmd>BufferGoto 6<CR>", "Go to buffer 6" },
-			["7"] = { "<Cmd>BufferGoto 7<CR>", "Go to buffer 7" },
-			["8"] = { "<Cmd>BufferGoto 8<CR>", "Go to buffer 8" },
-			["9"] = { "<Cmd>BufferGoto 9<CR>", "Go to buffer 9" },
-			["0"] = { "<Cmd>BufferLast<CR>", "Go to last buffer" },
-			p = { "<Cmd>BufferPin<CR>", "Pin/unpin buffer" },
-			gp = { "<Cmd>BufferGotoPinned<CR>", "Go to pinned buffer" },
-			gu = { "<Cmd>BufferGotoUnpinned<CR>", "Go to unpinned buffer" },
-			c = { "<Cmd>BufferClose<CR>", "Close buffer" },
-			w = { "<Cmd>BufferWipeout<CR>", "Wipeout buffer" },
-			aa = { "<Cmd>BufferCloseAllButCurrent<CR>", "Close all but current" },
-			ap = { "<Cmd>BufferCloseAllButPinned<CR>", "Close all but pinned" },
-			ao = { "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", "Close all but current/pinned" },
-			al = { "<Cmd>BufferCloseBuffersLeft<CR>", "Close buffers left" },
-			ar = { "<Cmd>BufferCloseBuffersRight<CR>", "Close buffers right" },
-			P = { "<Cmd>BufferPick<CR>", "Magic buffer pick mode" },
-			PD = { "<Cmd>BufferPickDelete<CR>", "Magic buffer pick delete" },
-			ob = { "<Cmd>BufferOrderByBufferNumber<CR>", "Order by buffer number" },
-			on = { "<Cmd>BufferOrderByName<CR>", "Order by name" },
-			od = { "<Cmd>BufferOrderByDirectory<CR>", "Order by directory" },
-			ol = { "<Cmd>BufferOrderByLanguage<CR>", "Order by language" },
-			ow = { "<Cmd>BufferOrderByWindowNumber<CR>", "Order by window number" },
-			e = { "<Cmd>BarbarEnable<CR>", "Enable Barbar" },
-			d = { "<Cmd>BarbarDisable<CR>", "Disable Barbar" },
+-- Initializes barbar.nvim plugin's mappings
+function NvConfig:InitWhichKeyBarbarMappings()
+	require("which-key").add({
+		{ "<leader>b,", "<cmd>BufferPrevious<cr>", desc = "Previous buffer", mode = "ni" },
+		{ "<leader>b.", "<cmd>BufferNext<cr>", desc = "Next buffer", mode = "ni" },
+		{ "<leader>b<", "<cmd>BufferMovePrevious<cr>", desc = "Move buffer left", mode = "ni" },
+		{ "<leader>b>", "<cmd>BufferMoveNext<cr>", desc = "Move buffer right", mode = "ni" },
+		{ "<leader>b1", "<cmd>BufferGoto 1<cr>", desc = "Go to buffer 1", mode = "ni" },
+		{ "<leader>b2", "<cmd>BufferGoto 2<cr>", desc = "Go to buffer 2", mode = "ni" },
+		{ "<leader>b3", "<cmd>BufferGoto 3<cr>", desc = "Go to buffer 3", mode = "ni" },
+		{ "<leader>b4", "<cmd>BufferGoto 4<cr>", desc = "Go to buffer 4", mode = "ni" },
+		{ "<leader>b5", "<cmd>BufferGoto 5<cr>", desc = "Go to buffer 5", mode = "ni" },
+		{ "<leader>b6", "<cmd>BufferGoto 6<cr>", desc = "Go to buffer 6", mode = "ni" },
+		{ "<leader>b7", "<cmd>BufferGoto 7<cr>", desc = "Go to buffer 7", mode = "ni" },
+		{ "<leader>b8", "<cmd>BufferGoto 8<cr>", desc = "Go to buffer 8", mode = "ni" },
+		{ "<leader>b9", "<cmd>BufferGoto 9<cr>", desc = "Go to buffer 9", mode = "ni" },
+		{ "<leader>b0", "<cmd>BufferLast<cr>", desc = "Go to last buffer", mode = "ni" },
+		{ "<leader>bp", "<cmd>BufferPin<cr>", desc = "Pin/unpin buffer", mode = "ni" },
+		{ "<leader>bgp", "<cmd>BufferGotoPinned<cr>", desc = "Go to pinned buffer", mode = "ni" },
+		{ "<leader>bgu", "<cmd>BufferGotoUnpinned<cr>", desc = "Go to unpinned buffer", mode = "ni" },
+		{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close buffer", mode = "ni" },
+		{ "<leader>bw", "<cmd>BufferWipeout<cr>", desc = "Wipeout buffer", mode = "ni" },
+		{ "<leader>baa", "<cmd>BufferCloseAllButCurrent<cr>", desc = "Close all but current", mode = "ni" },
+		{ "<leader>bap", "<cmd>BufferCloseAllButPinned<cr>", desc = "Close all but pinned", mode = "ni" },
+		{
+			"<leader>bao",
+			"<cmd>BufferCloseAllButCurrentOrPinned<cr>",
+			desc = "Close all but current/pinned",
+			mode = "ni",
 		},
-	}, { prefix = "<leader>" })
+		{ "<leader>bal", "<cmd>BufferCloseBuffersLeft<cr>", desc = "Close buffers left", mode = "ni" },
+		{ "<leader>bar", "<cmd>BufferCloseBuffersRight<cr>", desc = "Close buffers right", mode = "ni" },
+		{ "<leader>bP", "<cmd>BufferPick<cr>", desc = "Magic buffer pick mode", mode = "ni" },
+		{ "<leader>bPD", "<cmd>BufferPickDelete<cr>", desc = "Magic buffer pick delete", mode = "ni" },
+		{ "<leader>bob", "<cmd>BufferOrderByBufferNumber<cr>", desc = "Order by buffer number", mode = "ni" },
+		{ "<leader>bon", "<cmd>BufferOrderByName<cr>", desc = "Order by name", mode = "ni" },
+		{ "<leader>bod", "<cmd>BufferOrderByDirectory<cr>", desc = "Order by directory", mode = "ni" },
+		{ "<leader>bol", "<cmd>BufferOrderByLanguage<cr>", desc = "Order by language", mode = "ni" },
+		{ "<leader>bow", "<cmd>BufferOrderByWindowNumber<cr>", desc = "Order by window number", mode = "ni" },
+		{ "<leader>be", "<cmd>BarbarEnable<cr>", desc = "Enable Barbar", mode = "ni" },
+		{ "<leader>bd", "<cmd>BarbarDisable<cr>", desc = "Disable Barbar", mode = "ni" },
+	})
+end
+
+function NvConfig:InitWhichKeyMappings()
+	NvConfig:InitWhichKeyTelescopeMappings()
+	NvConfig:InitWhichKeyBarbarMappings()
 end
 
 -- Initialize and run the config.
 -- CONTRIBUTION: Prefer to add new features via methods or plugin specs above.
 local config = NvConfig:new()
 config:setup()
-config:InitLocalWhichKeyMappings()
-config:InitBufferKeymaps()
