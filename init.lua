@@ -518,4 +518,3 @@ end
 -- CONTRIBUTION: Prefer to add new features via methods or plugin specs above.
 local config = NvConfig:new()
 config:setup()
-config:InitWhichKeyMappings()
