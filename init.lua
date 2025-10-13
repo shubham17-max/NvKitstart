@@ -377,7 +377,7 @@ function NvConfig:setup()
 end
 
 -- Initializes Telescope plugin's mappings
-function NvConfig:InitWhichKeyTelescopeMappings()
+function NvConfig:InitWhichKeyLocalMappings()
 	require("which-key").add({
 		{ "<leader>f", group = "Local mappings" },
 		{
@@ -407,6 +407,7 @@ function NvConfig:InitWhichKeyTelescopeMappings()
 			mode = "ni",
 		},
 		{ "<leader>fo", "<cmd>Oil<cr>", desc = "Opens a file explorer", mode = "ni" },
+		{ "<leader>ft", "<cmd>Themery<cr>", desc = "Pick a coloroscheme!", mode = "ni" },
 	})
 end
 
@@ -510,7 +511,7 @@ function NvConfig:InitWhichKeyBarbarMappings()
 end
 
 function NvConfig:InitWhichKeyMappings()
-	NvConfig:InitWhichKeyTelescopeMappings()
+	NvConfig:InitWhichKeyLocalMappings()
 	NvConfig:InitWhichKeyBarbarMappings()
 end
 
